@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Movie Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form, .confirmation {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, input[type="text"], input[type="email"], input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .confirmation {
+            display: none;
+            text-align: center;
+        }
+        .confirmation h2 {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Online Movie Booking System</h1>
+
+    <!-- Movie Booking Form -->
+    <form id="bookingForm" onsubmit="return showConfirmation();">
+        <label for="movie">Select Movie:</label>
+        <select id="movie" name="movie">
+            <option value="Inception">Inception</option>
+            <option value="DEVARA">DEVARA</option>
+            <option value="Interstellar">Interstellar</option>
+            <option value="Avatar">Avatar</option>
+        </select>
+
+        <label for="showtime">Select Showtime:</label>
+        <select id="showtime" name="showtime">
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="7:00 PM">7:00 PM</option>
+        </select>
+
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <div class="button-container">
+            <input type="submit" value="Book Now">
+        </div>
+    </form>
+
+    <!-- Confirmation Message -->
+    <div class="confirmation" id="confirmationMessage">
+        <h2>Booking Confirmed!</h2>
+        <p>Thank you, <span id="displayName"></span>, for booking your movie ticket!</p>
+        <p>You have selected the movie <strong><span id="displayMovie"></span></strong> at <strong><span id="displayShowtime"></span></strong>.</p>
+        <p>A confirmation email has been sent to <strong><span id="displayEmail"></span></strong>.</p>
+        <p><strong>Enjoy the show!</strong></p>
+    </div>
+
+    <script>
+        function showConfirmation() {
+            // Get values from the form
+            var movie = document.getElementById('movie').value;
+            var showtime = document.getElementById('showtime').value;
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+
+            // Hide the form
+            document.getElementById('bookingForm').style.display = 'none';
+
+            // Show the confirmation message
+            document.getElementById('confirmationMessage').style.display = 'block';
+
+            // Fill in the confirmation details
+            document.getElementById('displayName').innerText = name;
+            document.getElementById('displayMovie').innerText = movie;
+            document.getElementById('displayShowtime').innerText = showtime;
+            document.getElementById('displayEmail').innerText = email;
+
+            // Prevent the form from actually submitting
+            return false;
+        }
+    </script>
+
+</body>
+</html>
